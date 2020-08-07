@@ -24,6 +24,6 @@ The script produces two items upon completion. The first is a text file, with it
 The second, more useful item is a folder with the same name as the raw text file (i.e. DECRYPTED-MESSAGE/). The folder will be located in the same location as the text file. Inside this folder are text files associated with the email message body, as well as any attachments included with the email.
 
 ## Notes on implementation and usage
-a. This only works on Windows, tested on Windows 10. In order for this to work, your computer needs to at least be able to access webmail (have correct certificates, etc).
-a. My script does not see anything related to your card, like your PIN; that part is handled by Windows and/or ActivClient. The script tells Windows to decrypt the email, and Windows figures out that it can't decrypt the email without the PIN, and asks you for it on its own.
-a. No information whatsoever is transmitted from this script to anywhere on the internet.
+- This only works on Windows, tested on Windows 10. In order for this to work, your computer needs to at least be able to access webmail (have correct certificates, etc).
+- My script does not see anything related to your card, like your PIN; that part is handled by Windows and/or ActivClient. The script tells Windows to decrypt the email, and Windows figures out that it can't decrypt the email without the PIN, and asks you for it on its own.
+- No information whatsoever is transmitted from this script to anywhere on the internet.
