@@ -70,8 +70,16 @@ $metaRegex = [regex]::match($text,'(\r\n\r\n)(\r\n)*');
 $textTruncated = $text.Substring($metaRegex.Index, $text.Length - $metaRegex.Index)
 
 # this step decodes the base64 into nearly-legible text. At this point, you should be able to see your message but not any attachments, as the attachments are
-# in another inception-like layer of base64 encoding.
-$textDecoded = [Text.Encoding]::Utf8.GetString([Convert]::FromBase64String($textTruncated))
+# in another inception-like layer of base64 encoding. 
+# echo $textTruncated
+
+# check if text is encoded in the first place before trying to decode
+if($textTruncated -imatch 'Content-Type: text'){ 
+	$textDecoded = $textTruncated
+}else{
+	$textDecoded = [Text.Encoding]::Utf8.GetString([Convert]::FromBase64String($textTruncated))	
+}
+
 
 Write-Host "Prompting user to save raw email data..."
 #creating a save file dialog for the raw email data
