@@ -1,4 +1,4 @@
-﻿#This script can be used to decrypt "smime.p7m" messages, like those produced by 
+#This script can be used to decrypt "smime.p7m" messages, like those produced by 
 # Outlook webmail when you don't have the S/MIME extension installed. 
 
 # The script can be run by right clicking on the file and choosing "Run with PowerShell". 
@@ -122,13 +122,18 @@ Write-Host "Extracting attachments..."
 Write-Host "Finding boundary keywords..."
 # To find these boundaries, I'm using a regex pattern that searches the location for where these boundaries are defined.
 # Content-Type: multipart/.*;\r*\n*\s*boundary="(.*)"
-$boundaryRegex = [regex]::matches( $textDecoded, "Content-Type: multipart/.*;\r*\n*\s*boundary=`"(.*)`"")
+$boundaryRegex = [regex]::matches( $textDecoded, "(----=_NextPart_[0-9A-Za-z_\.]*)")
 $boundaries = @()
 foreach ($match in $boundaryRegex){
     $boundaries += $match.Groups[1].Value
-    Write-Host "`tFound Keyword " + $match.Groups[1].Value
+}
+if($boundaries.length -ne 0){
+	$boundaries  = $boundaries | select -Unique	
 }
 
+foreach ($boundary in $boundaries){
+	Write-Host "`tFound Keyword " + $boundary
+}
 #reversing the boundary array to make the email text content end up appearing first.
 [Array]::Reverse($boundaries)
 $parts = @()
