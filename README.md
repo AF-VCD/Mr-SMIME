@@ -9,7 +9,11 @@ In order to utilize this tool, follow the steps in the two sections below:
 ### Getting S/MIME File:
 1. Go to your webmail and find the offending encrypted email that you can't open. 
 1. You should see that the email has an attachment called "smime.p7m"
-1. Download that attachment somewhere to your computer. This is the encrypted version of the email you can't open, and includes attachments as well.
+2. Forward that attachment, plus a copy of it, to your personal email. 
+
+![instructions](https://user-images.githubusercontent.com/8106034/127433744-c7d6fd4b-8117-4dc6-9eff-c832a302641f.gif)
+
+4. Download that attachment somewhere to your computer. This is the encrypted version of the email you can't open, and includes attachments as well.
 
 ### Getting and using script:
 1. Download the script from this github repository
